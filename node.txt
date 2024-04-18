@@ -1,0 +1,8 @@
+what is nodeJs??
+
+Js lang can only be run in browser.
+
+v8 is the most popular one
+Ryan(node founder) took v8 and c++ engin and merged it into one which created Node.js
+
+Node.js is a runtime env. for javascript
