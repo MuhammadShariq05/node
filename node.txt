@@ -6,3 +6,12 @@ v8 is the most popular one
 Ryan(node founder) took v8 and c++ engin and merged it into one which created Node.js
 
 Node.js is a runtime env. for javascript
+
+
+we can create our own scripts, and we can create our own dependencies.. npm -init , to initialise our project.
+
+what are modules??
+
+ans - Aone pure code base ko chote chote programs me divide kardete hai, thats we call module
+
+now in modules, which is used to export the privately made function to ur other files.
