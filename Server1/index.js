@@ -3,10 +3,14 @@ const express = require("express");;
 
 const app = express();
 
-app.get
+//syntax for express handler ~ "app.METHOD(path, HANDLER)"
+app.get("/", (req, res) => {
+  res.send("Homepage");
+})
 
-function myHandler(req, res){
+app.get("/about", (req, res) => {
+  const username = req.query.username;
+  res.send(`Hi, i am ${username} developer`);
+})
 
-}
-
-const myServer = http.createServer(myHandler)
+app.listen(8000, () => {console.log("Server started")})
