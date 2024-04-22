@@ -13,3 +13,9 @@ get.app("/users/:id", (req, res) => {
   const user = users.find((user) => user.id === id);
   return res.json(user);
 })
+
+POST /api/users -create new user
+
+PATCH /users/id - update existing user
+
+DELETE /user/id - delete exisiting user
