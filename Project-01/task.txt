@@ -1,1 +1,15 @@
 REST api -JSON
+
+GET /users/-
+get.app("url", (req, res)=>{
+  .....code
+})
+
+GET /users/1 (dynamic route here, where we want to search by id)
+
+Dynamic path parameters 
+get.app("/users/:id", (req, res) => {
+  const id = Number(req.param.id)
+  const user = users.find((user) => user.id === id);
+  return res.json(user);
+})
