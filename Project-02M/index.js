@@ -3,36 +3,42 @@ const fs = require("fs");
 const mongoose = require("mongoose");
 // const users = require("./MOCK_DATA.json");
 
-
 const app = express();
 const PORT = 5000;
 
 // connection to mongodb
-mongoose.connect('mongodb://127.0.0.1:27017/project-02-m')
-.then(() => {console.log("mongodb connected")})
-.catch((err) => {console.log("Mongo Error", err)});
-
+mongoose
+  .connect("mongodb://127.0.0.1:27017/project-02-m")
+  .then(() => {
+    console.log("mongodb connected");
+  })
+  .catch((err) => {
+    console.log("Mongo Error", err);
+  });
 
 // schema structure
-const userSchema = new mongoose.Schema({
-  first_name:{
-    type: String,
-    required: true,
+const userSchema = new mongoose.Schema(
+  {
+    first_name: {
+      type: String,
+      required: true,
+    },
+    last_name: {
+      type: String,
+      required: true,
+    },
+    email: {
+      type: String,
+      required: true,
+      unique: true,
+    },
+    gender: {
+      type: String,
+      required: true,
+    },
   },
-  last_name:{
-    type: String,
-    required: true,
-  },
-  email:{
-    type: String,
-    required: true,
-    unique: true,
-  },
-  gender:{
-    type: String,
-    required: true,
-  },
-})
+  { timestamps: true }// adding time stamps gave me a time at which its created 
+);
 
 // schema model
 const User = mongoose.model("user", userSchema);
@@ -83,16 +89,28 @@ app
   });
 
 // Post - create new user
-app.post("/api/users", (req, res) => {
+app.post("/api/users", async (req, res) => {
   const body = req.body;
-  users.push({ ...body, id: users.length + 1 });
-  fs.writeFile("./MOCK_DATA.json", JSON.stringify(users), (err, data) => {
-    if (err) {
-      return res.send("Error", err);
-    } else {
-      return res.status(201).json({ result: "sucess", id: users.length });
-    }
+  if (
+    !body ||
+    !body.first_name ||
+    !body.last_name ||
+    !body.email ||
+    !body.gender ||
+    !body.ip_address
+  ) {
+    return res.status(400).json({ msg: "All fields are required..." });
+  }
+
+  const result = await User.create({
+    first_name: body.first_name,
+    last_name: body.last_name,
+    email: body.email,
+    gender: body.gender,
+    ip: body.ip_address,
   });
+  
+  return res.status(201).json({ msg: "success" });
 });
 
 app.listen(PORT, () => {
