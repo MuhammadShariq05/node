@@ -1,0 +1,13 @@
+HTTP response status codes indicate whether a specific HTTP request has been successfully completed. Responses are grouped in five classes:
+
+Informational responses (100 – 199)
+Successful responses (200 – 299)
+Redirection messages (300 – 399)
+Client error responses (400 – 499)
+Server error responses (500 – 599)
+
+
+
+201 created is used for a response where we use put or post resquest.
+
+to add a status on our program write res.status(...sc).json({msg...});

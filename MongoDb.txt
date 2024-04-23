@@ -1,0 +1,7 @@
+MongoDB is a document database designed for ease of application development and scaling.
+
+install community edition
+
+Database systems such as MongoDB are typically used with an external application that connects to the database server and performs operations, such as reading and processing the data or writing new entries. In cases like this, you are not interacting with the database server directly. To perform administrative tasks on the database or execute ad-hoc database queries yourself, though, direct access might be needed.
+
+That’s where the MongoDB shell comes in. The MongoDB shell is an interactive console you can use to connect to the database server and execute commands on it, allowing you to perform administrative tasks and read, write, or manipulate data directly. The MongoDB shell enables you to connect to the database from a command line prompt and interactively work with it from a terminal window. It also allows you to run external scripts to perform repeated tasks with greater convenience.
