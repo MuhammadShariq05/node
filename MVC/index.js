@@ -14,7 +14,7 @@ connectMongo("mongodb://127.0.0.1:27017/project-MVC").then(() => {
 app.use(express.urlencoded({ extended: true }));
 
 // Route
-app.use("/user", userRouter);
+app.use("/users", userRouter);
 
 app.listen(PORT, () => {
   console.log(`Server started at Port ${PORT}`);
