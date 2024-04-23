@@ -37,7 +37,7 @@ const userSchema = new mongoose.Schema(
       required: true,
     },
   },
-  { timestamps: true }// adding time stamps gave me a time at which its created 
+  { timestamps: true } // adding time stamps gave me a time at which its created
 );
 
 // schema model
@@ -47,45 +47,31 @@ const User = mongoose.model("user", userSchema);
 
 app.use(express.urlencoded({ extended: true }));
 
-app.get("/users", (req, res) => {
-  return res.json(users);
+app.get("/users", async (req, res) => {
+  const allDbUsers = await User.find({});
+  return res.json(allDbUsers);
 });
 
 // dynamic route ~ GET /api/users/:id
-app.get("/users/:id", (req, res) => {
-  // get id
-  const id = Number(req.params.id);
-  //now we have to find id in the json file.
-  const user = users.find((user) => user.id === id);
+app.get("/users/:id", async (req, res) => {
+  // get id //now we have to find id in the json file.
+  const user = await User.findById(req.params.id);
+  if (!user) return res.status(404).json({ msg: "User not found" });
   return res.json(user);
 });
 
 app
   .route("/api/users/:id")
-  .get((req, res) => {
-    // get id
-    const id = Number(req.params.id);
-    //now we have to find id in the json file.
-    const user = users.find((user) => user.id === id);
+  .get(async (req, res) => {
+    // get id //now we have to find id in the json file.
+    const user = await User.findById(req.params.id);
+    if (!user) return res.status(404).json({ msg: "User not found" });
     return res.json(user);
   })
-  .patch((req, res) => {})
-  .delete((req, res) => {
-    // const id = Number(req.params.id);
-    // const user = users.find((user) => user.id === id);
-    // if (user !== -1) {
-    //   users.splice(user, 1);
-    //   fs.writeFile("./MOCK_DATA.json", JSON.stringify(users), (err, data) => {
-    //     if (err) {
-    //       console.log("Error", err);
-    //       res.status(500).send("Server error");
-    //     } else {
-    //       res.status(204).send("Delete");
-    //     }
-    //   });
-    // } else {
-    //   res.status(404).send("User not found");
-    // }
+  .patch(async (req, res) => {})
+  .delete(async (req, res) => {
+    const del = await User.findByIdAndDelete(req.params.id);
+    res.status(200).json({ msg: "deleted" });
   });
 
 // Post - create new user
@@ -109,7 +95,7 @@ app.post("/api/users", async (req, res) => {
     gender: body.gender,
     ip: body.ip_address,
   });
-  
+
   return res.status(201).json({ msg: "success" });
 });
 
