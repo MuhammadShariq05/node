@@ -1,3 +1,18 @@
 authentication
 
-statefull -> which maintains a state(data), 
+statefull -> which maintains a state(data).
+
+Lets understand some cryptography jargon, which is a bascis for authen..
+
+-> 1. Hashing: converting ur password intoo some gibberiesh
+          everytime ur password is converted into the gibbrish, its same that is stored in ur data base.
+
+          my question is, every time it converts it into gibberish, will it be same? and how will the backend know ki ya this user password should be converted into this gibberiesh to compare it from the backened, as other user might have the same password of "hello123"? 
+
+-> 2. Encryption:
+          converting gibberish back to normal code
+
+-> 3. Json Web Tokens(JWT):
+          - json : it will work on only json, take json as an input.
+          - web : used for web
+          - tokens : 
