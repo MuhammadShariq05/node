@@ -4,36 +4,17 @@ const mongoose = require("mongoose");
 const jwtPassword = "123456";
 const PORT = 3000;
 
-mongoose.connect(
-  "your_mongo_url",
-);
+mongoose.connect("mongodb://127.0.0.1:27017/auth_signin")
 
-const User = mongoose.model("User", {
+const User = mongoose.model("Users", {
   name: String,
   username: String,
   pasword: String,
 });
 
+
 const app = express();
 app.use(express.json());
-
-const ALL_USERS = [
-  {
-    username: "harkirat@gmail.com",
-    password: "123",
-    name: "harkirat singh",
-  },
-  {
-    username: "raman@gmail.com",
-    password: "123321",
-    name: "Raman singh",
-  },
-  {
-    username: "priya@gmail.com",
-    password: "123321",
-    name: "Priya kumari",
-  },
-];
 
 function userExists(username, password) {
   // write logic to return true or false if this user exists
@@ -47,9 +28,32 @@ function userExists(username, password) {
   return userExists;
 }
 
+app.post("/signup", async function (req, res) {
+  const username = req.body.username;
+  const password = req.body.password;
+  const name = req.body.name;
+
+  const existUser = await User.findOne({email: username });
+  if(existUser){
+    return res.status(400).json("User doesnt exist");
+  }
+
+  const user = new User({
+    name: name,
+    email: username,
+    password: password
+  });
+
+  user.save();
+  res.json({
+    "msg": "User created sucessfully"
+  })
+});
+
 app.post("/signin", function (req, res) {
   const username = req.body.username;
   const password = req.body.password;
+  const name = req.body.name;
 
   if (!userExists(username, password)) {
     return res.status(403).json({
