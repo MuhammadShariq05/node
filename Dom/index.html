@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dom</title>
+  </head>
+  <body>
+    <form id="LoginForm" action="/action_page.php">
+      First name:
+      <input type="text" name="faname" placeholder="Ex: Donald" /><br />
+      Last name:
+      <input type="text" name="lname" placeholder="Ex: Duck" /><br />
+    </form>
+
+    <p>
+      Click the "Try it" button to display the number of elements in the form.
+    </p>
+
+    <button onclick="myFunction()">Try it</button>
+
+    <p id="displaySpace"></p>
+    <script>
+      function myFunction() {
+        var w = document.getElementById("LoginForm").elements[0].value.length;
+        var x = document.getElementById("LoginForm").elements[1].value.length;
+        var y = document.getElementById("LoginForm").elements[0].value;
+        var z = document.getElementById("LoginForm").elements[1].value;
+
+        document.getElementById(
+          "displaySpace"
+        ).innerHTML = `Your name is ${y} ${z}, and the number of characters it contains are ${
+          w + x
+        }`;
+      }
+    </script>
+  </body>
+</html>
