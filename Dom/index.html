@@ -27,20 +27,21 @@
         var y = document.getElementById("LoginForm").elements[0].value;
         var z = document.getElementById("LoginForm").elements[1].value;
 
-        if(x === "" && y === ""){
+        if (x === 0 || y === 0) {
           const miss = document.createElement("p");
-          miss.innerText = "Enter the value"
+          miss.innerText = "Enter a value for both first and last name.";
           document.body.appendChild(miss);
-        }else{
+        } else {
           document.getElementById(
-          "displaySpace"
-        ).innerHTML = `Your name is ${y} ${z}, and the number of characters it contains are ${
-          w + x
-        }`
+            "displaySpace"
+          ).innerHTML = `Your name is ${y} ${z}, and the number of characters it contains are ${
+            w + x
+          }`;
+        }
       }
-    }
+
       const para = document.createElement("p");
-      para.innerText = "this was created by dom inner text createmethod()"
+      para.innerText = "This was created using the DOM innerText create method.";
       document.body.appendChild(para);
     </script>
   </body>
