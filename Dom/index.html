@@ -27,12 +27,21 @@
         var y = document.getElementById("LoginForm").elements[0].value;
         var z = document.getElementById("LoginForm").elements[1].value;
 
-        document.getElementById(
+        if(x === "" && y === ""){
+          const miss = document.createElement("p");
+          miss.innerText = "Enter the value"
+          document.body.appendChild(miss);
+        }else{
+          document.getElementById(
           "displaySpace"
         ).innerHTML = `Your name is ${y} ${z}, and the number of characters it contains are ${
           w + x
-        }`;
+        }`
       }
+    }
+      const para = document.createElement("p");
+      para.innerText = "this was created by dom inner text createmethod()"
+      document.body.appendChild(para);
     </script>
   </body>
 </html>
