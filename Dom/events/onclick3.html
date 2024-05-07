@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hide text</title>
+</head>
+<body>
+  <p id="p1">
+    Game theory models are classified by all of the options you provided:
+
+- **Sum of all payoffs:** This refers to the outcomes or rewards associated with different combinations of strategies chosen by players in a game. It's a crucial aspect of analyzing and understanding game theory models.
+
+- **Number of strategies:** Games can be classified based on the number of strategies available to each player. This includes games with a finite number of strategies (finite games) as well as games with infinite strategies (continuous games).
+
+- **Number of players:** The number of players in a game is another classification criterion. Games can be classified as single-player (where only one player makes decisions), two-player (bilateral games), or games with multiple players (multiplayer games).
+
+So, all of these criteria contribute to the classification of game theory models.
+  </p>
+
+  <input id="hide" type="button" value="Hide text">
+  <input id="show" type="button" value="Show text">
+
+  <script>
+    document.getElementById("hide").onclick = hideText;
+    function hideText(){
+      document.getElementById("p1").style.visibility="hidden"
+    }
+
+    document.getElementById("show").onclick = showText;
+    function showText(){
+      document.getElementById("p1").style.visibility="visible"
+    }
+  </script>
+</body>
+</html>
