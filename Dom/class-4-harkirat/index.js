@@ -11,6 +11,6 @@ app.get("/sum", (req, res) => {
   res.send(sum.toString());
 });
 
-app.listen(PORT, ()=>{
+app.listen(PORT, () => {
   console.log(`Sever started at port ${PORT}`);
-})
+});
