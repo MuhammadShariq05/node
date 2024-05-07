@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>On click date</title>
+</head>
+<body>
+  <p>click "Try it" to show the date</p>
+  <button id="myBtn">Try it</button>
+
+  <p id="show"></p>
+
+  <script>
+    document.getElementById("myBtn").onclick = displayDate;
+
+    function displayDate(){
+      document.getElementById("show").innerHTML = Date();
+    }
+  </script>
+</body>
+</html>

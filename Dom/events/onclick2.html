@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Text changer</title>
+</head>
+<body>
+  <h2 id="change">javascript HTML events</h2>
+  <button id="myBtn">Click me to change text</button>
+
+  <script>
+    document.getElementById("myBtn").onclick = textChanger;
+
+    function textChanger(){
+      document.getElementById("change").innerHTML = "onClick Event"
+    }
+  </script>
+</body>
+</html>
