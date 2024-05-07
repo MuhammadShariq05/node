@@ -1,0 +1,34 @@
+The `setInterval` function in the code snippet is used to clear the `numberOfRequestsForUser` object every 1 second. Let's break down what this means:
+
+1. **`numberOfRequestsForUser` Object:**
+   - This object is used to keep track of the number of requests made by each user.
+   - It uses the user's ID (`userId`) as the key and increments the count for each request made by that user.
+
+2. **`setInterval` Function:**
+   ```javascript
+   setInterval(() => {
+     numberOfRequestsForUser = {};
+   }, 1000);
+   ```
+   - This function runs a specified block of code (`numberOfRequestsForUser = {};`) at regular intervals (`1000` milliseconds or 1 second in this case).
+   - The block of code resets the `numberOfRequestsForUser` object to an empty object, effectively clearing all user request counts every 1 second.
+
+Now, let's consider a scenario to understand how the rate limiting works:
+
+- Suppose you, as a user, access a GET request to the `/user` route multiple times within 1 second.
+- The rate-limiting middleware checks the `numberOfRequestsForUser` object for your user ID.
+- If you make more than 5 requests within that 1-second window, the middleware will block your further requests with a 404 response.
+
+Here's an example timeline:
+
+1. You make 4 GET requests to `/user` within the first 0.5 seconds.
+   - The middleware increments your request count for each request.
+   - `numberOfRequestsForUser[yourUserId]` is now 4.
+
+2. Within the next 0.5 seconds (total 1 second elapsed), you make 3 more GET requests to `/user`.
+   - The middleware increments your request count for each request.
+   - `numberOfRequestsForUser[yourUserId]` is now 7.
+
+3. Since you exceeded the limit of 5 requests per second, the middleware blocks your 7th request with a 404 response.
+
+After 1 second (due to the `setInterval`), the `numberOfRequestsForUser` object is cleared, allowing you to make requests again from a clean slate.
