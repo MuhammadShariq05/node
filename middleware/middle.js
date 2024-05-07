@@ -16,19 +16,22 @@ function isOldEnoughMiddleware(req, res, next){
   }
 }
 
-app.get("/ride1", isOldEnoughMiddleware, function(req, res){
+// app.use(middle ware)... will says the whole app that it will use this middle ware, so we can use it andremove the individual function we had defined inthe get function
+
+app.use(isOldEnoughMiddleware);
+app.get("/ride1", function(req, res){
   res.json({
     msg: "Ridden ride 1"
   })
 })
 
-app.get("/ride2", isOldEnoughMiddleware, function(req, res){
+app.get("/ride2", function(req, res){
   res.json({
     msg: "Ridden ride 2"
   })
 })
 
-app.get("/ride3", isOldEnoughMiddleware, function(req, res){
+app.get("/ride3", function(req, res){
   res.json({
     msg: "Ridden ride 3"
   })
