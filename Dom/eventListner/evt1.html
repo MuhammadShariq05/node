@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Event Listner</title>
+</head>
+<body>
+  <h2>JavaScript add Event Listner method</h2>
+  <p>Click this button to see the change</p>
+  <button id="myBtn">Click  me</button>
+ 
+  <script>
+    document.getElementById("myBtn").addEventListener("click", myFunction);
+
+    function myFunction(){
+      alert("event listened")
+    }
+  </script>
+</body>
+</html>
