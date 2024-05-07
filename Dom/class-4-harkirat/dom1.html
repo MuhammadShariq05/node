@@ -6,10 +6,9 @@
     <title>Sum & Amount calculator</title>
   </head>
   <body>
-    <input id="first" type="text" placeholder="first number" />
-    <input id="second" type="text" placeholder="second number" />
+    <input oninput="calculate()" id="first" type="text" placeholder="first number" />
+    <input oninput="calculate()" id="second" type="text" placeholder="second number" />
 
-    <button id="myBtn">calculate sum</button>
     <p id="demo"></p>
 
     <br>
@@ -22,9 +21,18 @@
       <button id="button">calculate Amount</button>
     <p id="calculated-Amount"></p>
     </div>
+
     <script>
-      document.getElementById("myBtn").addEventListener("click", calculate);
       document.getElementById("button").addEventListener("click", amountCalculate);
+      
+      // adding debounce raw no library
+      let timeout;
+      function debounceCalculate(){
+        clearTimeout(timeout);
+        timeout = setTimeout(function 
+        calculate(){
+        }, 1000);
+      }
 
       async function calculate() {
         const a = parseFloat(document.getElementById("first").value);
