@@ -18,6 +18,8 @@ function isOldEnoughMiddleware(req, res, next){
 
 // app.use(middle ware)... will says the whole app that it will use this middle ware, so we can use it andremove the individual function we had defined inthe get function
 
+// note app.use middle ware cae, triggers only the route below it, not above it.
+// ooder matters here where u introduced middleware
 app.use(isOldEnoughMiddleware);
 app.get("/ride1", function(req, res){
   res.json({
