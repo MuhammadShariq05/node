@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Sum & Amount calculator</title>
   </head>
   <body>
     <input id="first" type="text" placeholder="first number" />
@@ -11,8 +11,20 @@
 
     <button id="myBtn">calculate sum</button>
     <p id="demo"></p>
+
+    <br>
+
+    <div class="amount">
+      <input id="principle" type="text" placeholder="principle"><br>
+      <input id="rate" type="text" placeholder="rate"><br>
+      <input id="time" type="text" placeholder="time"><br>
+
+      <button id="button">calculate Amount</button>
+    <p id="calculated-Amount"></p>
+    </div>
     <script>
       document.getElementById("myBtn").addEventListener("click", calculate);
+      document.getElementById("button").addEventListener("click", amountCalculate);
 
       async function calculate() {
         const a = parseFloat(document.getElementById("first").value);
@@ -22,6 +34,16 @@
         const data = await response.json();
 
         document.getElementById("demo").innerHTML = "Sum: " + data;
+      }
+
+      async function amountCalculate(){
+        const a = parseFloat(document.getElementById("principle").value);
+        const b = parseFloat(document.getElementById("rate").value);
+        const c = parseFloat(document.getElementById("time").value);
+        const response = await fetch(`http://localhost:5000/interest?principal=${a}&rate=${b}&time=${c}`);
+        const data = await response.json();
+
+        document.getElementById("calculated-Amount").innerHTML = `Total: ${data.total}, Interest: ${data.interest}`;
       }
     </script>
   </body>
